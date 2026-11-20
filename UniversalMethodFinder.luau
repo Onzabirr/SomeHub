@@ -8,10 +8,10 @@ if not globalcontainer then
 	globalenv.globalcontainer = globalcontainer
 end
 
-local genvs = { _G, shared } -- Could become an issue if the latest function it gets is unaccessible by client
-if getgenv then
-	table.insert(genvs, getgenv())
-end
+local genvs = {}
+if getgenv then table.insert(genvs, getgenv()) end
+table.insert(genvs, shared)
+table.insert(genvs, _G)
 -- if getrenv then -- Add this if you wish to search through game's env (normal Scripts)
 -- 	table.insert(genvs, 1, getrenv())
 -- end
